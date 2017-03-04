@@ -25,6 +25,13 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.2.0'
+    /* dependencia para el google sign-in*/
+    compile 'com.google.android.gms:play-services-auth:9.8.0'
+
+    compile 'com.google.android.gms:play-services-ads:9.8.0'
+
     testCompile 'junit:junit:4.12'
-    compile 'com.google.android.gms:play-services-ads:10.2.0'
+
 }
+
+apply plugin: 'com.google.gms.google-services'

@@ -13,6 +13,7 @@ public class login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        /*
         final Button boton = (Button) findViewById(R.id.buttonIngresar);
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,5 +30,7 @@ public class login extends AppCompatActivity {
             }
 
         });
+        */
+
     }
 }

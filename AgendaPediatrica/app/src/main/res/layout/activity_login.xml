@@ -9,58 +9,58 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.agendaapp.agendapediatrica.login">
+    <!--
+        <TextView
+            android:text="Usuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/textViewUsuario"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
-    <TextView
-        android:text="Usuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textViewUsuario"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:layout_below="@+id/textViewUsuario"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="14dp"
+            android:id="@+id/editTextUsuario" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/textViewUsuario"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="14dp"
-        android:id="@+id/editTextUsuario" />
+        <TextView
+            android:text="Password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextUsuario"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="14dp"
+            android:id="@+id/textViewPasword"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
-    <TextView
-        android:text="Password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextUsuario"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="14dp"
-        android:id="@+id/textViewPasword"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:layout_below="@+id/textViewPasword"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="17dp"
+            android:id="@+id/editTextPassword" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_below="@+id/textViewPasword"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="17dp"
-        android:id="@+id/editTextPassword" />
-
-    <Button
-        android:text="Ingresar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:id="@+id/buttonIngresar"
-        android:layout_below="@+id/editTextPassword"
-        android:layout_alignRight="@+id/editTextPassword"
-        android:layout_alignEnd="@+id/editTextPassword" />
-
+        <Button
+            android:text="Ingresar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:id="@+id/buttonIngresar"
+            android:layout_below="@+id/editTextPassword"
+            android:layout_alignRight="@+id/editTextPassword"
+            android:layout_alignEnd="@+id/editTextPassword" />
+    -->
 </RelativeLayout>
