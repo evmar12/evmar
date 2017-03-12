@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.agendaapp.agendapediatrica.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -19,6 +18,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+
 
 /**
  * Actividad de la pantalla principal. Se muestra el botón de iniciar sesión con cuanta
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
+    public final static String EXTRA_MESSAGE = "com.agendaapp.agendapediatrica.MESSAGE";
 
     private GoogleApiClient mGoogleApiClient;
     private TextView mTitleText, mStatusTextView, mMailAddrTextView;
@@ -180,10 +181,19 @@ public class MainActivity extends AppCompatActivity implements
     private void updateUI(boolean signedIn) {
 
         if (signedIn) {
+
+            /*
             mTitleText.setText(getString(R.string.logged_in));
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
             mMailAddrTextView.setVisibility(View.VISIBLE);
+            */
+
+            Intent intent = new Intent(this, HomeActivity.class);
+
+            String message = "Este es un mensaje de prueba.";
+            intent.putExtra(EXTRA_MESSAGE, message);
+            startActivity(intent);
 
         } else {
             mTitleText.setText(getString(R.string.logged_out));
