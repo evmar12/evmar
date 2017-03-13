@@ -4,8 +4,8 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.agendaapp.agendapediatrica.MainActivity">
+    tools:context="com.agendaapp.agendapediatrica.MainActivity"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
             android:id="@+id/mail_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="esto es prueba para mail_address"
+            android:text="intoducir e-mail_address"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
@@ -64,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            tools:text="Optional Action"
+            tools:text="Ingresar"
             tools:visibility="visible" />
 
     </LinearLayout>
