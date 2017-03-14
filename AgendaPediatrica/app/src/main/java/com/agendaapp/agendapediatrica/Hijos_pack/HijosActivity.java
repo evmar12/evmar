@@ -8,7 +8,8 @@ import com.agendaapp.agendapediatrica.R;
 
 public class HijosActivity extends AppCompatActivity {
 
-    public  static final String EXTRA_HIJOS_ID = "extra_hijos_id";
+    public static final String EXTRA_HIJOS_ID = "extra_hijos_id";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +21,7 @@ public class HijosActivity extends AppCompatActivity {
         HijosFragment fragment = (HijosFragment)
                 getSupportFragmentManager().findFragmentById(R.id.hijos_container);
 
-        if (fragment == null){
+        if (fragment == null) {
             fragment = HijosFragment.newInstance();
             getSupportFragmentManager()
                     .beginTransaction()

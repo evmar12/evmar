@@ -62,6 +62,7 @@ public class HijosFragment extends Fragment {
 
         // Eventos
 
+        // Temporalmente se deshabilitan los escuchas para mostrar detalle y agregar nuevo hijo
         /*
         mHijosList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

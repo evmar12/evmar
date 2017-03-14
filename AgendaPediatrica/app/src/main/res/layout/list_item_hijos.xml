@@ -12,7 +12,17 @@
     android:paddingTop="8dp">
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_nombre_hijo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="72dp"
+        android:text="New Text"
+        android:textAppearance="?textAppearanceListItem"
+        tools:text="Grupo Agenda" />
+<!--
+    <TextView
+        android:id="@+id/tv_fecha_nacimiento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -21,4 +31,14 @@
         android:textAppearance="?textAppearanceListItem"
         tools:text="Grupo Agenda" />
 
+    <TextView
+        android:id="@+id/tv_sexo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="72dp"
+        android:text="New Text"
+        android:textAppearance="?textAppearanceListItem"
+        tools:text="Grupo Agenda" />
+-->
 </RelativeLayout>

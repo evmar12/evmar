@@ -65,7 +65,7 @@ public class HijosDBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getAllHijos() {
-        return getReadableDatabase()
+        Cursor cursorHijos = getReadableDatabase()
                 .query(
                         HijosEntry.TABLE_NAME,
                         null,
@@ -74,6 +74,8 @@ public class HijosDBHelper extends SQLiteOpenHelper {
                         null,
                         null,
                         null);
+
+        return cursorHijos;
     }
 
     public Cursor getHijosById(String hijosId) {
