@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
 
+    public static final String EXTRA_MESSAGE = "Esto es una prueba";
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
 

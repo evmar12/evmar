@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
 
         <!-- Especificar la actividad Launcher del app -->
-        <activity android:name=".MainActivity">
+        <activity android:name=".Hijos_pack.HijosActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,10 +31,12 @@
         -->
 
         <activity android:name=".bienvenido" />
+        <!--
         <activity
             android:name=".Hijos_pack.HijosActivity"
             android:label="@string/title_activity_hijos"
             android:theme="@style/AppTheme.NoActionBar" />
+         -->
     </application>
 
 </manifest>

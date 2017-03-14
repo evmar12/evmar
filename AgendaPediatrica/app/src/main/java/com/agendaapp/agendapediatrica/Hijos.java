@@ -1,6 +1,7 @@
 package com.agendaapp.agendapediatrica;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import com.agendaapp.agendapediatrica.Hijos_Esquema.HijosEntry;
 
@@ -24,6 +25,13 @@ public class Hijos {
         this.nombre = nombre;
         this.fecha_nac = fecha_nac;
         this.sexo = sexo;
+    }
+
+    public Hijos(Cursor cursor) {
+        id = cursor.getString(cursor.getColumnIndex(HijosEntry.ID));
+        nombre = cursor.getString(cursor.getColumnIndex(HijosEntry.NOMBRE));
+        fecha_nac = cursor.getString(cursor.getColumnIndex(HijosEntry.FECHA_NACIMIENTO));
+        sexo = cursor.getString(cursor.getColumnIndex(HijosEntry.SEXO));
     }
 
     public ContentValues toContentValues() {

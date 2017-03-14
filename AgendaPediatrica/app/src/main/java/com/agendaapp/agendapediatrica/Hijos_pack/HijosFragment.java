@@ -10,8 +10,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
-
+import com.agendaapp.agendapediatrica.Hijos_Esquema.HijosEntry;
 import com.agendaapp.agendapediatrica.HijosDBHelper;
 import com.agendaapp.agendapediatrica.R;
 /**
@@ -22,10 +23,10 @@ import com.agendaapp.agendapediatrica.R;
 public class HijosFragment extends Fragment {
     public static final int REQUEST_UPDATE_DELETE_HIJOS = 2;
 
-    private HijosDBHelper mHijosDBHelper;
+    private HijosDBHelper mHijosDbHelper;
 
     private ListView mHijosList;
-    private HijosCursosAdapter mHijosAdapter;
+    private HijosCursosAdapter mHijossAdapter;
     private FloatingActionButton mAddButton;
 
     public HijosFragment() {
@@ -49,21 +50,47 @@ public class HijosFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_hijos, container, false);
 
-        //Regerencias UI
+        // Referencias UI
         mHijosList = (ListView) root.findViewById(R.id.hijos_list);
-        mHijosAdapter = new HijosCursosAdapter(getActivity(),null);
+        mHijossAdapter = new HijosCursosAdapter(getActivity(), null);
         mAddButton = (FloatingActionButton) getActivity().findViewById(R.id.fab);
 
-        //Setup
-        mHijosList.setAdapter(mHijosAdapter);
+        // Setup
+        mHijosList.setAdapter(mHijossAdapter);
 
-        //Instancia de helper
-        mHijosList.setAdapter(mHijosAdapter);
+        // Eventos
 
-        //Carga de datos
+        /*
+        mHijosList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Cursor currentItem = (Cursor) mHijossAdapter.getItem(i);
+                String currentHijoId = currentItem.getString(
+                        currentItem.getColumnIndex(HijosEntry.ID));
+
+                showDetailScreen(currentHijoId);
+            }
+        });
+        */
+
+        /*
+        mAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showAddScreen();
+            }
+        });
+        */
+
+
+        getActivity().deleteDatabase(mHijosDbHelper.DATABASE_NAME);
+
+        // Instancia de helper
+        mHijosDbHelper = new HijosDBHelper(getActivity());
+
+        // Carga de datos
         loadHijos();
 
         return root;
@@ -73,13 +100,14 @@ public class HijosFragment extends Fragment {
 
         @Override
         protected Cursor doInBackground(Void... voids) {
-            return mHijosDBHelper.getAllHijos();
+
+            return mHijosDbHelper.getAllHijos();
         }
 
         @Override
         protected void onPostExecute(Cursor cursor) {
             if (cursor != null && cursor.getCount() > 0) {
-                mHijosAdapter.swapCursor(cursor);
+                mHijossAdapter.swapCursor(cursor);
             } else {
                 // Mostrar empty state
             }
