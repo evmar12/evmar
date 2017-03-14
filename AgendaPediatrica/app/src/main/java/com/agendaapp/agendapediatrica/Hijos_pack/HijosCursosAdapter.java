@@ -28,21 +28,20 @@ public class HijosCursosAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        //Referencias UI
-        TextView textoNombre = (TextView) view.findViewById(R.id.tv_nombre_hijo);
 
-        //TextView textoFechaNacimiento = (TextView) view.findViewById(R.id.tv_fecha_nacimiento);
-        //TextView textoSexo = (TextView) view.findViewById(R.id.tv_sexo);
-
-        //get valores
+        // obtener datos para cada regisstro
         String name = cursor.getString(cursor.getColumnIndex(HijosEntry.NOMBRE));
-
         String fechaNacimiento = cursor.getString(cursor.getColumnIndex(HijosEntry.FECHA_NACIMIENTO));
-
         String sexo = cursor.getString(cursor.getColumnIndex(HijosEntry.SEXO));
 
+        // Referencias UI. Elementos del layout
+        TextView textoNombre = (TextView) view.findViewById(R.id.tv_nombre_hijo);
+        TextView textoFechaNacimiento = (TextView) view.findViewById(R.id.tv_fecha_nacimiento);
+        TextView textoSexo = (TextView) view.findViewById(R.id.tv_sexo);
+
+        // setters para los elementos de la lista
         textoNombre.setText(name);
-        //textoFechaNacimiento.setText(fechaNacimiento);
-        //textoSexo.setText(sexo);
+        textoFechaNacimiento.setText(fechaNacimiento);
+        textoSexo.setText(sexo);
     }
 }
