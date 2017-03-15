@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.agendaapp.agendapediatrica.Hijos_pack.HijosActivity;
 import com.agendaapp.agendapediatrica.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -127,7 +128,10 @@ public class MainActivity extends AppCompatActivity implements
 
             mMailAddrTextView.setText(getString(R.string.mail_address, acct.getEmail()));
 
-            updateUI(true);
+            // updateUI(true);      // TODO deprecar
+            Intent intent = new Intent(this, HijosActivity.class);
+            startActivity(intent);
+
         } else {
             // Signed out, show unauthenticated UI.
             updateUI(false);
@@ -187,13 +191,9 @@ public class MainActivity extends AppCompatActivity implements
     @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     private void updateUI(boolean signedIn) {
 
-        if (signedIn) {
-            mTitleText.setText(getString(R.string.logged_in));
-            findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
-            mMailAddrTextView.setVisibility(View.VISIBLE);
-
-        } else {
+        if (!signedIn) {
+            // se depreca actualización de UI en el mismo activity.
+            // En cambio se llamará a la pantalla que lista hijos.
             mTitleText.setText(getString(R.string.logged_out));
             mStatusTextView.setText(R.string.signed_out);
             mMailAddrTextView.clearComposingText();
@@ -210,7 +210,6 @@ public class MainActivity extends AppCompatActivity implements
             case R.id.sign_in_button:
                 signIn();
                 break;
-
             case R.id.sign_out_button:
                 signOut();
                 break;

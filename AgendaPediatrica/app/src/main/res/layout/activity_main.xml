@@ -43,7 +43,6 @@
             android:id="@+id/mail_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="intoducir e-mail_address"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
