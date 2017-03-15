@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import static com.agendaapp.agendapediatrica.Hijos_Esquema.HijosEntry;
+
 /**
  * Created by Rocio Note on 09/03/2017.
  */
@@ -32,7 +33,7 @@ public class HijosDBHelper extends SQLiteOpenHelper {
         mockData(db);
     }
 
-    private void mockData(SQLiteDatabase sqLiteDatabase ) {
+    private void mockData(SQLiteDatabase sqLiteDatabase) {
         mockHijos(sqLiteDatabase, new Hijos("Carlos Perez", "25/10/2016", "MAS"));
         mockHijos(sqLiteDatabase, new Hijos("Lorena Perez", "25/01/2011", "FEM"));
     }
@@ -46,16 +47,17 @@ public class HijosDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    //NO HAY OPERACIONES
+        //NO HAY OPERACIONES
     }
 
     /**
      * Usa getWritableDatabase() para obtener el manejador de la base de datos para
      * operaciones de escritura. En cuestiones de lectura usa getReadableDatabase()
+     *
      * @param hijos
      * @return
      */
-    public long saveHijos (Hijos hijos){
+    public long saveHijos(Hijos hijos) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
 
         return sqLiteDatabase.insert(
@@ -89,6 +91,7 @@ public class HijosDBHelper extends SQLiteOpenHelper {
                 null);
         return c;
     }
+
     public int deleteHijos(String hijosId) {
         return getWritableDatabase().delete(
                 HijosEntry.TABLE_NAME,
