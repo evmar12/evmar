@@ -2,16 +2,12 @@ package com.agendaapp.agendapediatrica;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.agendaapp.agendapediatrica.Hijos_pack.HijosActivity;
-import com.agendaapp.agendapediatrica.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -23,6 +19,7 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+
 /**
  * Actividad de la pantalla principal. Se muestra el botón de iniciar sesión con cuanta
  * Google. Con el login exitoso se muestra el nombre completo y la dirección de correo.
@@ -32,9 +29,9 @@ public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
 
-    public static final String EXTRA_MESSAGE = "Esto es una prueba";
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
+    public final static String EXTRA_MESSAGE = "com.agendaapp.agendapediatrica.MESSAGE";
 
     private GoogleApiClient mGoogleApiClient;
     private TextView mTitleText, mStatusTextView, mMailAddrTextView;
@@ -75,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     @Override
     public void onStart() {
         super.onStart();
@@ -94,7 +90,6 @@ public class MainActivity extends AppCompatActivity implements
             // single sign-on will occur in this branch.
             showProgressDialog();
             opr.setResultCallback(new ResultCallback<GoogleSignInResult>() {
-                @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
                 @Override
                 public void onResult(GoogleSignInResult googleSignInResult) {
                     hideProgressDialog();
@@ -105,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -117,7 +111,6 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
@@ -128,10 +121,7 @@ public class MainActivity extends AppCompatActivity implements
 
             mMailAddrTextView.setText(getString(R.string.mail_address, acct.getEmail()));
 
-            // updateUI(true);      // TODO deprecar
-            Intent intent = new Intent(this, HijosActivity.class);
-            startActivity(intent);
-
+            updateUI(true);
         } else {
             // Signed out, show unauthenticated UI.
             updateUI(false);
@@ -188,12 +178,24 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     private void updateUI(boolean signedIn) {
 
-        if (!signedIn) {
-            // se depreca actualización de UI en el mismo activity.
-            // En cambio se llamará a la pantalla que lista hijos.
+        if (signedIn) {
+
+            /*
+            mTitleText.setText(getString(R.string.logged_in));
+            findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
+            mMailAddrTextView.setVisibility(View.VISIBLE);
+            */
+
+            Intent intent = new Intent(this, HomeActivity.class);
+
+            String message = "Este es un mensaje de prueba.";
+            intent.putExtra(EXTRA_MESSAGE, message);
+            startActivity(intent);
+
+        } else {
             mTitleText.setText(getString(R.string.logged_out));
             mStatusTextView.setText(R.string.signed_out);
             mMailAddrTextView.clearComposingText();
@@ -210,6 +212,7 @@ public class MainActivity extends AppCompatActivity implements
             case R.id.sign_in_button:
                 signIn();
                 break;
+
             case R.id.sign_out_button:
                 signOut();
                 break;
