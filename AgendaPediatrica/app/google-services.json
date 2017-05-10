@@ -13,16 +13,16 @@
       },
       "oauth_client": [
         {
-          "client_id": "632955617876-hjcpbh5itdfts51opffrfh4sirg30i76.apps.googleusercontent.com",
+          "client_id": "632955617876-dfgn0544tj8dp8h4fris36hiuv85tu99.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "632955617876-d246bj1tjn7b8mcp6s5tju9m5mkvj2e5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.agendaapp.agendapediatrica",
-            "certificate_hash": "27c5b40f137107e54f3ce3a96c8aabc958323b52"
+            "certificate_hash": "4113fcaf0b8a30c6a83685d81247a2dd95814760"
           }
-        },
-        {
-          "client_id": "632955617876-97iqgbci5rm45jejb6l8p2o08i8taddu.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [

@@ -25,7 +25,7 @@ public class login extends AppCompatActivity {
                     startActivity(segundoForm);
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Usuario Incorrecto", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "UsuarioAPI Incorrecto", Toast.LENGTH_SHORT).show();
                 }
             }
 

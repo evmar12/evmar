@@ -2,6 +2,7 @@ package com.agendaapp.agendapediatrica;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -11,7 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.agendaapp.agendapediatrica.Hijos_pack.HijosActivity;
-import com.agendaapp.agendapediatrica.R;
+import com.github.kevinsawicki.http.HttpRequest;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -22,6 +23,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+
 
 /**
  * Actividad de la pantalla principal. Se muestra el botón de iniciar sesión con cuanta
@@ -35,6 +37,9 @@ public class MainActivity extends AppCompatActivity implements
     public static final String EXTRA_MESSAGE = "Esto es una prueba";
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
+
+    // URL BASE del WebService
+    private static String URL_BASE = "http://localhost:8084/AgendaWS/webresources";
 
     private GoogleApiClient mGoogleApiClient;
     private TextView mTitleText, mStatusTextView, mMailAddrTextView;
@@ -84,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements
         if (opr.isDone()) {
             // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
             // and the GoogleSignInResult will be available instantly.
-            Log.d(TAG, "Got cached sign-in");
+            // Log.d(TAG, "Got cached sign-in");
             GoogleSignInResult result = opr.get();
             handleSignInResult(result);
 
@@ -128,9 +133,13 @@ public class MainActivity extends AppCompatActivity implements
 
             mMailAddrTextView.setText(getString(R.string.mail_address, acct.getEmail()));
 
+            // todo llamado al service
+            String correo = acct.getEmail();
+            validarUsuario(correo);
+
             // updateUI(true);      // TODO deprecar
-            Intent intent = new Intent(this, HijosActivity.class);
-            startActivity(intent);
+            //Intent intent = new Intent(this, HijosActivity.class);
+            //startActivity(intent);
 
         } else {
             // Signed out, show unauthenticated UI.
@@ -216,6 +225,43 @@ public class MainActivity extends AppCompatActivity implements
             case R.id.disconnect_button:
                 revokeAccess();
                 break;
+
+        }
+    }
+
+    public MainActivity getOuter() {
+        return MainActivity.this;
+    }
+
+    public void validarUsuario(String correo) {
+        // TODO tener en cuenta que esta URL es local solamente
+        String urlValidar = "%s/usuarios/validarUsuario/%s";
+        urlValidar = String.format(urlValidar, URL_BASE, correo);
+        new ValidarUsuarioTask().execute(urlValidar);
+    }
+
+    private class ValidarUsuarioTask extends AsyncTask<String, Long, String> {
+        protected String doInBackground(String... urls) {
+            try {
+                return HttpRequest.get(urls[0]).accept("application/json")
+                        .body();
+            } catch (HttpRequest.HttpRequestException exception) {
+                return null;
+            }
+        }
+
+        protected void onPostExecute(String response) {
+
+            // evaluar respuesta booleana del WEbService
+            if ("true".equalsIgnoreCase(response.toString())) {
+                Intent intent = new Intent(getOuter(), HijosActivity.class);
+
+                Log.i(TAG, response);
+                startActivity(intent);
+
+            } else {
+                updateUI(false);
+            }
 
         }
     }
